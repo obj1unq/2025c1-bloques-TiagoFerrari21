@@ -8,6 +8,43 @@ describe "pepita volar" {
     assert.throwsException({pepita.volar(1000)})
   }
 
+  test "rutina de entrenamiento pepita 1" {
+
+      roque.rutina({ ave =>
+          ave.volar(5)
+          ave.comer(alpiste)
+      })
+
+      roque.entrenar()
+
+      assert.equals(105, pepita.energia())
+  }
+
+
+   test "rutina de entrenamiento pepita 2" {
+
+      roque.rutina({ ave =>
+          ave.volar(5)
+          ave.comer(alpiste)
+          ave.volar(5)
+      })
+
+      roque.entrenar()
+
+      assert.equals(90, pepita.energia())
+  }
+
+
+  test "rutina de entrenamiento pepita 3" {
+
+      roque.rutina({ ave =>
+          ave.comer(alpiste)
+          ave.volar(1000)
+          ave.comer(alpiste)
+      })
+      assert.throwsException({ roque.entrenar() })
+  }
+
   test "mi asserter" {
     //Espero que mi asserter diga que está mal que pepita.volar(10) lanza error (ya que no lo lanza)
     assert.notThat( miAsserter.assertException( { pepita.volar(10) } ))
